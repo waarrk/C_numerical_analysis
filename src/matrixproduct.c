@@ -16,6 +16,7 @@ int matrixProduct(const double **matrixA, const double **matrixB,
   for (*rowOut = 0; *rowOut < *rowA; (*rowOut)++) {
     for (*colOut = 0; *colOut < *colB; (*colOut)++) {
       /* s—ñ—v‘f‚ÌŒvŽZ */
+      /* A1*b1 + A2B2 ....*/
       element = 0;
       for (i = 0; i < *rowB; i++) {
         element += matrixA[*rowOut][i] * matrixB[i][*colOut];
