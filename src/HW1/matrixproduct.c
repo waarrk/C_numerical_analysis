@@ -16,7 +16,7 @@ int matrixProduct(const double **matrixA, const double **matrixB,
   for (*rowOut = 0; *rowOut < *rowA; (*rowOut)++) {
     for (*colOut = 0; *colOut < *colB; (*colOut)++) {
       /* 行列要素の計算 */
-      /* A1*b1 + A2B2 ....*/
+      /* A1*b1 + A2*B2 ....*/
       element = 0;
       for (i = 0; i < *rowB; i++) {
         element += matrixA[*rowOut][i] * matrixB[i][*colOut];
@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
 
   /* 引数のチェック */
   if (argc != 3) {
-    fprintf(stderr, "ERR: 引数の数が違います．\n", argv[0]);
+    fprintf(stderr, "ERR: 引数の数が違います．%s\n", argv[0]);
     return 0;
   }
   printf("-- Info -- \n");
@@ -46,11 +46,11 @@ int main(int argc, char *argv[]) {
 
   /* CSVから行列を読み込む */
   if ((finA = fopen(argv[1], "r")) == NULL) {
-    fprintf(stderr, "ERR: ファイルを正常に読み込ませんでした．\n", argv[1]);
+    fprintf(stderr, "ERR: ファイルを正常に読み込ませんでした．%s\n", argv[1]);
     return EXIT_FAILURE;
   }
   if ((finB = fopen(argv[2], "r")) == NULL) {
-    fprintf(stderr, "ERR: ファイルを正常に読み込ませんでした．\n", argv[2]);
+    fprintf(stderr, "ERR: ファイルを正常に読み込ませんでした．%s\n", argv[2]);
     return EXIT_FAILURE;
   }
 

@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
 
   /* 引数のチェック */
   if (argc != 2) {
-    fprintf(stderr, "ERR: 引数の数が違います．\n", argv[0]);
+    fprintf(stderr, "ERR: 引数の数が違います．%s\n", argv[0]);
     return 0;
   }
   printf("-- Info -- \n");
@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
 
   /* ファイルの読み込み */
   if ((fin = fopen(argv[1], "r")) == NULL) {
-    fprintf(stderr, "ERR: ファイルを正常に読み込ませんでした．\n", argv[1]);
+    fprintf(stderr, "ERR: ファイルを正常に読み込ませんでした．%s\n", argv[1]);
     return EXIT_FAILURE;
   }
 
@@ -43,6 +43,9 @@ int main(int argc, char *argv[]) {
   /* メモリアドレスを処理用バッファにコピー */
   memcpy(buf, &matrix[0][0], sizeof(double));
 
+  /* ファイルデータのメモリ領域開放 */
+  freeMatrix(matrix);
+
   /* バッファの中身をIEEE754形式にダンプ */
   printf("-- OutPut -- \n");
   printf("sEEEEEEE EEEEdddd dddddddd... \n");
@@ -54,8 +57,5 @@ int main(int argc, char *argv[]) {
     printf(" ");
   }
   printf("\n");
-
-  /* ファイルデータのメモリ領域開放 */
-  freeMatrix(matrix);
   return EXIT_SUCCESS;
 }
