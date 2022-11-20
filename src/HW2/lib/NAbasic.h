@@ -4,6 +4,9 @@
         　Oct. 03, 2018		ver 1.0
 */
 
+#ifndef NABASIC_H
+#define NABASIC_H
+
 // 必要ヘッダ
 #include <stdio.h>
 #include <stdlib.h>
@@ -29,3 +32,5 @@ double *matrix2colVector(const double **matrix, int row, int col);
 int showMatrix(const double **matrix, int row, int col);
 // matrixを転置する
 double **tpMatrix(const double **matrix, int row, int col);
+
+#endif  // NABASIC_H

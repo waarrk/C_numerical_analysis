@@ -1,9 +1,13 @@
 {
     "files.associations": {
-        "nabasic.h": "c"
+        "nabasic.h": "c",
+        "dynamic.h": "c"
     },
     "cSpell.words": [
         "Edddd",
-        "matrixproduct"
-    ]
+        "matrixproduct",
+        "MEMORYCONTROLLER",
+        "NABASIC"
+    ],
+    "files.encoding": "shiftjis",
 }
