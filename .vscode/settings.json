@@ -7,7 +7,8 @@
         "Edddd",
         "matrixproduct",
         "MEMORYCONTROLLER",
-        "NABASIC"
+        "NABASIC",
+        "nonlinearequation"
     ],
     "files.encoding": "shiftjis",
 }
