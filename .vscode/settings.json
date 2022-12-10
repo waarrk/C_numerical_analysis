@@ -1,7 +1,11 @@
 {
     "files.associations": {
         "nabasic.h": "c",
-        "dynamic.h": "c"
+        "dynamic.h": "c",
+        "array": "c",
+        "string": "c",
+        "string_view": "c",
+        "vector": "c"
     },
     "cSpell.words": [
         "Edddd",
