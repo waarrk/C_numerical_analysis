@@ -21,6 +21,35 @@ int matrixProduct(int left, int right, dynamicMemory *data, double **matrixOut,
   return EXIT_SUCCESS;
 }
 
+int innerProduct(int left, int right, dynamicMemory *data, double **matrixOut,
+                 int *rowOut, int *colOut) {
+  /* s—ñ‚Ì—v‘fŒvZ—p•Ï” */
+  int element;
+  int i, j;
+
+  double **trans = allocMatrix(data[0].col, data[0].row);
+
+  for (i = 0; i < data[0].row; i++) {
+    for (j = 0; j < data[0].col; j++) {
+      trans[j][i] = data[0].matrix[i][j];
+    }
+  }
+
+  /* matrixA‚ÆmatrixB‚©‚çÏmatrixOut‚ğŒvZ*/
+  for (*rowOut = 0; *rowOut < data[0].col; (*rowOut)++) {
+    for (*colOut = 0; *colOut < data[1].col; (*colOut)++) {
+      /* s—ñ—v‘f‚ÌŒvZ */
+      /* A1*b1 + A2*B2 ....*/
+      element = 0;
+      for (i = 0; i < data[1].row; i++) {
+        element += trans[*rowOut][i] * data[1].matrix[i][*colOut];
+      }
+      matrixOut[*rowOut][*colOut] = element;
+    }
+  }
+  return EXIT_SUCCESS;
+}
+
 double pivotSearch(int k, dynamicMemory *data) {
   double max = 0;
   int max_row = 0;
