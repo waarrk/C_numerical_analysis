@@ -9,6 +9,9 @@
 #include "NAbasic.h"
 #include "memory_controller.h"
 
+/* 行列積計算関数 */
+int matrixProduct(int left, int right, dynamicMemory *data, double **matrixOut,
+                  int *rowOut, int *colOut);
 /*行列のk列目の絶対最大値を返す*/
 double pivotSearch(int k, dynamicMemory *data);
 /*行列のk行目とp行目を入れ替える*/
