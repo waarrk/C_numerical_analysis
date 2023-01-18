@@ -1,0 +1,90 @@
+% 電子制御工学実験報告書スタイルファイル
+% <2021/10/5, Daiji Suzuki>
+
+\RequirePackage{geometry,array}
+
+% \zw と \zh の定義
+\providecommand{\zw}{zw}
+\providecommand{\zh}{zh}
+
+\geometry{left=20mm,right=20mm,top=30mm,bottom=30mm}
+
+\renewcommand{\baselinestretch}{1.25}
+
+% maketitle 用の要素の定義
+\newcommand*{\grade}[1]{\newcommand*{\@grade}{#1}}  % 学年・出席番号
+\newcommand*{\team}[1]{\newcommand*{\@team}{#1}}  % 班
+\newcommand*{\expdate}[1]{\newcommand*{\@expdate}{#1}}  % 実験日
+\newcommand{\coauthor}[1]{\newcommand{\@coauthor}{#1}}  % 共同実験者
+
+\if@titlepage
+  \renewcommand{\maketitle}{%
+    \begin{titlepage}%
+      \let\footnotesize\small
+      \let\footnoterule\relax
+      \let\footnote\thanks
+      \centerline{\Large\bfseries 電子制御工学実験報告書}%
+      \vspace{2\zh}%
+      {%
+        \large%
+        \begin{tabular}{>{\bfseries}l@{\hspace{0.5\zw}：\hspace{0.5\zw}}l}
+          実験題目 & {\bfseries\@title}\\
+          報告者 & \@grade\hspace{1\zw}\@author\\
+          提出日 & \@date\\
+          実験日 & \@expdate\\
+          実験班 & \@team\\
+          共同実験者 & {%
+            \begingroup%
+              \renewcommand{\arraystretch}{0.6}%
+              \begin{tabular}[t]{rl}\@coauthor\end{tabular}%
+            \endgroup%
+          }%
+        \end{tabular}%
+        \par%
+      }%
+      \vfill%
+      {\large\bfseries ※ 指導教員記入欄\par}%
+      \vspace{1\zh}%
+      \centerline{%
+        \begingroup
+          \renewcommand{\arraystretch}{1.2}
+          \begin{tabular}{|m{5.5cm}|>{\hfil}m{1cm}<{\hfil}|>{\hfil}m{2cm}<{\hfil}|>{\hfil}m{2cm}<{\hfil}|}
+            \hline
+            \multicolumn{1}{|c|}{評価項目} & 配点
+            & \shortstack{\vspace{5pt}\\一次チェック\\・\hspace{1\zw}・}
+            & \shortstack{\vspace{5pt}\\二次チェック\\・\hspace{1\zw}・}\\\hline\hline
+            記載量 & 20 & & \\\hline
+            図・表・グラフ & 20 & & \\\hline
+            見出し，ページ番号，その他体裁 & 10 & & \\\hline
+            その他の減点 & -- & & \\\hline\hline
+            合計 & 50 & & \\\hline
+          \end{tabular}%
+        \endgroup
+      }
+      \vspace{1.5\zh}%
+      {\large\bfseries コメント：\par}%
+      \vspace{3cm}
+      \par
+      \@thanks\vfil\null
+    \end{titlepage}%
+    \setcounter{footnote}{0}%
+    \global\let\thanks\relax
+    \global\let\maketitle\relax
+    \global\let\@thanks\@empty
+    \global\let\@author\@empty
+    \global\let\@date\@empty
+    \global\let\@title\@empty
+    \global\let\title\relax
+    \global\let\author\relax
+    \global\let\date\relax
+    \global\let\and\relax
+    \global\let\@grade\relax
+    \global\let\@team\relax
+    \global\let\@expdate\relax
+    \global\let\@coauthor\lelax
+    \global\let\grade\relax
+    \global\let\team\relax
+    \global\let\expdate\relax
+    \global\let\coauthor\relax
+  }%
+\fi
