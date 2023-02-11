@@ -1,0 +1,6 @@
+-- Info -- 
+係数行列Aファイル名: data\k4-input1.csv
+ベクトルYファイル名: data\k4-input2.csv
+x0 = 2
+x1 = 4
+x2 = 3

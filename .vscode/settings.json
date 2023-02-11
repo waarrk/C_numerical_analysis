@@ -10,7 +10,10 @@
         "matrix_calculation.h": "c",
         "__locale": "c",
         "ios": "c",
-        "ratio": "c"
+        "ratio": "c",
+        "lufunction.h": "c",
+        "naplus.h": "c",
+        "romberg.h": "c"
     },
     "cSpell.words": [
         "Colomns",

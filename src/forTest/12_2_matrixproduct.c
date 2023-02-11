@@ -1,3 +1,5 @@
+/* ? Yusaku WASHIO 2023 All rights reserved.*/
+
 /* ライブラリのインクルード */
 #include <stdio.h>
 #include <stdlib.h>

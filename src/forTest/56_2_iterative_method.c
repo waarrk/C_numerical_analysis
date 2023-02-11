@@ -12,11 +12,13 @@
 /* 各種マクロ定義 */
 #define ARGC_QUANTITY 3
 
+#define SEARCH_ATTEMPTS 100
+
 int main(int argc, char **argv) {
   /* 構造体の初期化 */
   dynamicMemory memory[3] = {
       {"係数行列A", argv[1], NULL, NULL},
-      {"ベクトルY", argv[2], NULL, NULL},
+      {"ベクトルb", argv[2], NULL, NULL},
       {NULL, NULL, NULL, NULL},
   };
 
@@ -26,26 +28,23 @@ int main(int argc, char **argv) {
     return 0;
   }
 
-  printf("-- Info -- \n");
-  printf("係数行列Aファイル名: %s\n", argv[1]);
-  printf("ベクトルYファイル名: %s\n", argv[2]);
-
   /* CSVを読み込み動的配列に格納 */
   fileReader(memory);
-  double *answer = (double *)malloc(sizeof(double) * 3);
 
-  /* 行列の三角化 */
-  triangulation(memory);
-  /* 上三角行列を解く*/
-  backSubstitution(memory, answer);
+  printf("-- Info -- \n");
+  printf("係数行列Aファイル名: %s\n", argv[1]);
+  showMatrix((const double **)memory[0].matrix, memory[0].row, memory[0].col);
+  printf("ベクトルbファイル名: %s\n", argv[2]);
+  showMatrix((const double **)memory[1].matrix, memory[1].row, memory[1].col);
 
-  /*解の表示*/
-  for (int i = 0; i < memory[0].col; i++) {
-    printf("x%d = %g\n", i, answer[i]);
-  }
+  printf("-- OutPut -- \n");
+  /* 行列のLU分解 */
+  printf("ヤコビ法\n");
+  jacobiMethod(memory, SEARCH_ATTEMPTS);
+  printf("ガウスザイデル法\n");
+  gaussSeidelMethod(memory, SEARCH_ATTEMPTS);
 
   /* 終了処理 */
-  free(answer);
   allAllocatedMemoryFree(memory);
   return EXIT_SUCCESS;
 }

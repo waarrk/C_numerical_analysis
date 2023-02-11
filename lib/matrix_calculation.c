@@ -27,7 +27,7 @@ int innerProduct(int left, int right, dynamicMemory *data, double **matrixOut,
   int element;
   int i, j;
 
-  double **trans = allocMatrix(data[0].col, data[0].row);
+  double **trans = allocMatrix(data[0].row, data[0].col);
 
   for (i = 0; i < data[0].row; i++) {
     for (j = 0; j < data[0].col; j++) {

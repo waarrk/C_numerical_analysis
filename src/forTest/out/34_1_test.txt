@@ -1,0 +1,29 @@
+-- Info -- 
+関数ファイル名: data\k3-default.csv
+区間ファイル名: data\k3-input1_test.csv
+関数: y = +1x^4-3x^2+5x^1-9x^0
+区間入力: [-3, -2]
+-- OutPut -- 
+二分探索処理...
+att: 10, left: -3.000000, right: -2.500000, mid: -2.500000
+att: 9, left: -2.750000, right: -2.500000, mid: -2.750000
+att: 8, left: -2.625000, right: -2.500000, mid: -2.625000
+att: 7, left: -2.562500, right: -2.500000, mid: -2.562500
+att: 6, left: -2.531250, right: -2.500000, mid: -2.531250
+att: 5, left: -2.531250, right: -2.515625, mid: -2.515625
+att: 4, left: -2.531250, right: -2.523438, mid: -2.523438
+att: 3, left: -2.527344, right: -2.523438, mid: -2.527344
+att: 2, left: -2.527344, right: -2.525391, mid: -2.525391
+att: 1, left: -2.527344, right: -2.526367, result: -2.526367188
+ニュートン法探索処理...
+att: 10, result: -2.527941176
+att: 9, result: -2.527330325
+att: 8, result: -2.527330028
+att: 7, result: -2.527330028
+att: 6, result: -2.527330028
+att: 5, result: -2.527330028
+att: 4, result: -2.527330028
+att: 3, result: -2.527330028
+att: 2, result: -2.527330028
+att: 1, result: -2.527330028
+-- EXIT -- 
