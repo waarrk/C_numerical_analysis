@@ -1,4 +1,5 @@
 /* ライブラリのインクルード */
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -6,14 +7,11 @@
 #include "memory_controller.h"
 
 /* 各種マクロ定義 */
-#define DEBUG 1
 #define ARGC_QUANTITY 2
 
-#define SEARCH_ATTEMPTS 10
-
 /* 関数プロトタイプ */
-float f(float x);
-float trapezoid_integral(int division, float a, float b);
+float f(float x, float y);
+float euler(float x_start, float h, float x_end, float y_start);
 
 int main(int argc, char **argv) {
   /* 構造体の初期化 */
@@ -38,10 +36,11 @@ int main(int argc, char **argv) {
 
   /* 区間データの存在確認 */
   if (&memory[0].matrix[0][0] != NULL && &memory[0].matrix[0][1] != NULL &&
-      &memory[0].matrix[0][2] != NULL) {
-    printf("分割数入力: [%g]\n", memory[0].matrix[0][0]);
-    printf("積分範囲入力: [%g, %g]\n", memory[0].matrix[0][1],
-           memory[0].matrix[0][2]);
+      &memory[0].matrix[0][2] != NULL && &memory[0].matrix[0][3] != NULL) {
+    printf("xの初期値入力: [%g]\n", memory[0].matrix[0][0]);
+    printf("ステップ幅入力: [%g]\n", memory[0].matrix[0][1]);
+    printf("xの最終値入力: [%g]\n", memory[0].matrix[0][2]);
+    printf("yの初期値入力: [%g]\n", memory[0].matrix[0][3]);
 
   } else {
     printf("ERR: CSVデータ が 異常 です．\n");
@@ -51,10 +50,8 @@ int main(int argc, char **argv) {
   }
 
   printf("-- OUTPUT -- \n");
-  answer = trapezoid_integral(memory[0].matrix[0][0], memory[0].matrix[0][1],
-                              memory[0].matrix[0][2]);
-
-  printf("積分結果 [%g]\n", answer);
+  answer = euler(memory[0].matrix[0][0], memory[0].matrix[0][1],
+                 memory[0].matrix[0][2], memory[0].matrix[0][3]);
 
   printf("-- EXIT -- \n");
 
@@ -64,21 +61,22 @@ int main(int argc, char **argv) {
 }
 
 /* 関数 */
-float f(float x) { return x * x; }
+float f(float x, float y) { return (x * (1 - y)); }
 
-/*  division 分割数（近似漸近和の詳細度）
-    a b 積分範囲*/
-
-float trapezoid_integral(int division, float a, float b) {
-  float delta = (b - a) / division;
-  float s = 0;
-  s = f(a) + f(b);
-
-  int i;
-  for (i = 1; i <= division - 1; i++) {
-    s = s + 2 * f(a + i * delta);
+/*引数
+  x_start : xの初期値
+  h       : ステップ幅
+  x_end   : xの最終値
+  y_start : yの初期値
+戻り値
+  y_end   : xの最終値におけるyの値*/
+float euler(float x_start, float h, float x_end, float y_start) {
+  while (x_start < (x_end + h)) {
+    printf("結果 [x, y]  =  [%.6f, %.6f]\n", x_start, y_start);
+    y_start += h * f(x_start, y_start);
+    x_start += h;
   }
 
-  s = delta / 2 * s;
-  return s;
+  printf("xの最終値に達しました\n");
+  return y_start;
 }
