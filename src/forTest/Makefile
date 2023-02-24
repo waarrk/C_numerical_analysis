@@ -8,7 +8,7 @@ objs := $(wildcard obj/*.exe)
 data := $(wildcard data/*.csv)
 
 
-all: 12_1 12_2 34_1 34_2 56_1 56_2 78_1 78_2 910_1 910_2 1112_1 1112_2
+all: 12_1 12_2 34_1 34_2 56_1 56_2 78_1 78_2 910_1 910_2 1112_1 1112_2 T1
 
 test: 12_1_test 12_2_test 34_1_test 34_2_test 56_1_test 56_2_test 78_1_test 78_2_test 910_1_test 910_2_test 1112_1_test 1112_2_test
 
@@ -16,6 +16,9 @@ clean:
 		del $(objdir)\*.exe
 		del $(objdir)\*.tds
 		del $(outdir)\*.txt
+
+T1: $(srcs) $(libs)
+		$(cc) T1_bin2decimal.c $(libs) -o $(objdir)\T1_bin2decimal.exe
 
 12_1: $(srcs) $(libs)
 		$(cc) 12_1_decimal2bin.c $(libs) -o $(objdir)\12_1_decimal2bin.exe
@@ -100,3 +103,12 @@ clean:
 1112_2_test: $(objs) $(data)
 		$(objdir)\1112_2_euler_method.exe data\k12-input.csv > $(outdir)\1112_2_check.txt
 		$(objdir)\1112_2_euler_method.exe data\k12-input_test.csv > $(outdir)\1112_2_test.txt
+
+LU_run: $(objs) $(data)
+		$(objdir)\56_1_LU_decomposition.exe data\t1-lu.csv data\t1-lu2.csv > $(outdir)\t-lu-out.txt
+
+EVAL_run: $(objs) $(data)
+		$(objdir)\78_1_eigenvalue.exe data\t2-evalue.csv > $(outdir)\t-eval-out.txt
+
+TAKO_run: $(objs) $(data)
+		$(objdir)\910_1_complement.exe data\t3-tako.csv 2.0> $(outdir)\t-tako-out.txt
